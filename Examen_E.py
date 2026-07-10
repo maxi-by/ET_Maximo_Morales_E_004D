@@ -40,7 +40,7 @@ def busqueda_multa(multa_min, multa_max, libros, prestamos):
             print(f"Los libros encontrados son: {producto}")
 def buscar_codigo(codigo, prestamos):
     for clave in prestamos:
-        if codigo.upper() == codigo.upper():
+        if clave.upper() == codigo.upper():
             return True
     return False
 def actualizar_multa(codigo, nueva_multa, prestamos):
