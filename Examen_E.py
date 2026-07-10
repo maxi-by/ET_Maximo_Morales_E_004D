@@ -34,7 +34,7 @@ prestamos = {
 'L005': [600, 1],
 'L006': [350, 6],
 }
-def opias_genero(genero, libros, prestamos):
+def copias_genero(genero, libros, prestamos):
     total = 0
     for clave in libros:
         if libros[clave][2].lower() == genero.lower():
@@ -54,3 +54,65 @@ def busqueda_multa(multa_min, multa_max, libros, prestamos):
         resultados.sort()
         for producto in resultados:
             print(f"Los libros encontrados son: {producto}")
+def buscar_codigo(codigo, prestamos):
+    for clave in prestamos:
+        if codigo.upper() == codigo.upper():
+            return True
+    return False
+def actualizar_multa(codigo, nueva_multa, prestamos):
+    codigo = codigo.upper()
+    if buscar_codigo(codigo, prestamos):
+        prestamos[codigo][0] = nueva_multa
+        return True
+    return False
+def validar_codigo(codigo):
+    if codigo.strip() != "":
+        return True
+    else:
+        return False
+def validar_titulo(titulo):
+    if titulo.strip() != "":
+        return True
+    else:
+        return False
+def validar_autor(autor):
+    if autor.strip() != "":
+        return True
+    else:
+        return False
+def validar_año(año):
+    if año > 0:
+        return True
+    else:
+        return False
+def validar_editorial(editorial):
+    if editorial.strip() != "":
+        return True
+    else:
+        return False
+def validar_es_novedad(es_novedad):
+    if es_novedad == "s" or es_novedad == "n":
+        return True
+    else:
+        return False
+def validar_precio_multa(precio_multa):
+    if precio_multa > 0:
+        return True
+    else:
+        return False
+def validar_copias_disponibles(copias_disponibles):
+    if copias_disponibles >= 0:
+        return True
+    else:
+        return False
+def agregar_libro(codigo, titulo, autor, genero, año, editorial, es_novedad, precio_multa, copias_disponibles, libros, prestamos):
+    if buscar_codigo(codigo, prestamos):
+        return False
+    else:
+        if es_novedad == "s":
+            es_novedad_bool = True
+        else:
+            es_novedad_bool = False
+        libros[codigo.upper()] = [titulo, autor, genero, año, editorial, es_novedad_bool]
+        prestamos[codigo.upper()] = [precio_multa, copias_disponibles]
+        return True
