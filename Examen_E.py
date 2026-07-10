@@ -116,3 +116,9 @@ def agregar_libro(codigo, titulo, autor, genero, año, editorial, es_novedad, pr
         libros[codigo.upper()] = [titulo, autor, genero, año, editorial, es_novedad_bool]
         prestamos[codigo.upper()] = [precio_multa, copias_disponibles]
         return True
+def eliminar_libro(codigo, libros, prestamos):
+    if buscar_codigo(codigo, prestamos):
+        libros.pop(codigo)
+        prestamos.pop(codigo)
+        return True
+    return False
